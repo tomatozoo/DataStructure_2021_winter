@@ -78,3 +78,36 @@ def bowling(score):
 
 bowling(score1)
 bowling(score2)
+
+# polynomial ADT
+A = [(2,100), (1,0)]
+
+B = [(1,4), (10,3), (3,2), (1,0)]
+
+D = []
+
+def padd(a, b, d):
+    while a and b:
+        coef1, exp1 = a[0]
+        coef2, exp2 = b[0]
+        if exp1 > exp2:
+            d.append(a.pop(0)) # 가장 앞 원소를 꺼낸다 # a.pop 은 가장 뒷 원소
+        elif exp1 < exp2:
+            d.append(b.pop(0))
+        else:
+            d.append(((coef1+coef2), exp1))
+            a.pop(0)
+            b.pop(0)
+    for coef, exp in a:
+        d.append((coef, exp))
+    for coef, exp in b:
+        d.append((coef, exp))
+
+a = [(5,12), (-6, 8), (13,3)]
+b = [(10,15), (4,8), (9,0)]
+d = []
+
+print("a=",a)
+print("b=", b)
+padd(a,b,d)
+print("d=", d)
