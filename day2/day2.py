@@ -111,3 +111,31 @@ print("a=",a)
 print("b=", b)
 padd(a,b,d)
 print("d=", d)
+
+class SparseMatrix:
+    def __init__(self):
+        self.matrix = [[15,0,0,22,0,15],
+                       [0,11,3,0,0,0],
+                       [0,0,0,-6,0,0],
+                       [0,0,0,0,0,0],
+                       [91,0,0,0,0,0],
+                       [0,0,28,0,0,0]]
+        self.sparse_list = []
+    def toTuple(self):
+        row = count = 0
+        for rows in self.matrix:
+            col = 0
+            for value in rows:
+                if value != 0:
+                    count += 1
+                    self.sparse_list.append((row, col, value))
+                col += 1
+            row += 1
+        height = len(self.matrix)
+        width = len(self.matrix[0])
+        
+        self.sparse_list.insert(0,(height,width,count))
+        
+s = SparseMatrix()
+s.toTuple()
+print(s.sparse_list)
