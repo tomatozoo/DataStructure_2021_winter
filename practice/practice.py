@@ -331,3 +331,17 @@ print(que.pop())
 # N Queens Problem
 def NQueens(N):
     pass
+
+class NQeens:
+    def __init__(self, size): 
+        self.size = size
+        self.col = [None] * self.size
+        
+    def put_queen(self, row):
+        self.col[row]
+                    
+    def check_pos(self, rows, col):
+        pass
+            
+    def show_board(self):
+        pass
