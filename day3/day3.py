@@ -185,3 +185,89 @@ print("top", s.peek())
 
 for i in range(7):
     print(s.pop(), end=' ')
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+    def empty(self):
+        return len(self.queue)==0
+    def size(self):
+        return len(self.queue)
+    def push(self, item):
+        self.queue.append(item)
+        self.view()
+    def pop(self):
+        if not self.empty():
+            return self.queue.pop(0)
+        else:
+            print("Queue Empty")
+    def peek(self):
+        if not self.empty():
+            return self.queue[0]
+    def view(self):
+        print(self.queue)
+
+q = Queue()
+
+for item in [3,4,5,6,7,8]:
+    q.push(item)
+
+print("front", q.peek())
+print("Q size", q.size())
+
+for i in range(6):
+    print(q.pop(), end=' ')
+    q.view()
+    
+class CQueue:
+    def __init__(self, size):
+        self.front = 0
+        self.rear = 0
+        self.size = size
+        self.cqueue = [None] * self.size  
+        # static array 형태로 만든다
+        # 현재 위치를 잘 파악하기 위한 장치
+        self.count = 0
+    def empty(self):
+        return self.count == 0
+    def full(self):
+        return self.count == self.size
+    def view(self):
+        print(self.cqueue,\
+            'F=%d R=%d' %(self.front, self.rear))
+    def push(self, item):
+        if not self.full():
+            print("Push %2d" % item, end=' ')
+            self.rear = (self.rear + 1) % self.size
+            self.cqueue[self.rear] = item
+            self.view()
+            self.count += 1
+        else:
+            print("Queue full")
+    def pop(self):
+        if not self.empty():
+            print("Pop  ", end=' ')
+            self.front=(self.front+1)%self.size
+            item = self.cqueue[self.front]
+            self.cqueue[self.front] = None
+            self.count -= 1
+            self.view()
+            return item
+        else:
+            print("Queue empty")
+q = CQueue(5)
+for item in [3,4,5]:
+    q.push(item)
+    
+print(q.pop())
+q.push(7)
+q.push(9)
+print(q.pop())
+q.push(13)
+print(q.pop())
+q.push(15)
+q.push(8)
+q.push(10)
+
+for i in range(6):
+    print(q.pop())
