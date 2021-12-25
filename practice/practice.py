@@ -266,4 +266,68 @@ class cQueue:
     
     # pop
     
-    
+
+
+
+### left
+
+# Circular Queue
+
+class CQueue:
+    # __init__
+    def __init__(self, size):
+        self.size = size
+        self.cq = [None] * self.size 
+        # [front]
+        # [rear]
+        # [none none none none none]
+        self.front = 0
+        self.rear = 0
+        self.count = 0
+    # empty
+    def empty(self):
+        return self.front == self.rear
+    # full
+    def full(self):
+        return self.front == (self.rear + 1) % self.size
+    # view
+    def view(self):
+        return self.cq
+    # push
+    def push(self, data):
+        if self.full():
+            print("FULL CQUEUE")
+        else:
+            
+            self.cq[self.rear] = data
+            self.rear += 1
+    # pop
+    def pop(self):
+        if self.empty():
+            print("EMPTY CQUEUE")
+        else:
+            data = self.cq[self.front]
+            self.cq[self.front] = None
+            self.front += 1
+            return data
+
+print()
+que = CQueue(6)
+que.push(1)
+que.push(1)
+que.push(2)
+que.push(3)
+que.push(4)
+que.push(5)
+que.push(6)
+print()
+print(que.pop())
+print(que.pop())
+print(que.pop())
+print(que.pop())
+
+# bowling game
+
+# N Queens Problem
+def NQueens(N):
+    pass
