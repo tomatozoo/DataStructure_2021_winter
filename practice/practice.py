@@ -329,19 +329,46 @@ print(que.pop())
 # bowling game
 
 # N Queens Problem
-def NQueens(N):
-    pass
-
 class NQeens:
     def __init__(self, size): 
         self.size = size
-        self.col = [None] * self.size
+        self.col = [-1] * self.size
+        self.solutions = 0
         
     def put_queen(self, row):
-        self.col[row]
-                    
+        if row==self.size:
+            self.solutions += 1
+        else:
+            for col in range(self.size):
+                if self.check_pos(row, col):
+                    self.col[row] = col
+                    # queen을 놓음
+                    self.put_queen(row+1)
+        self.show_board()
+                
     def check_pos(self, rows, col):
-        pass
+        # 상 하
+        ans = True
+        for i in range(self.size):
+            if self.col[i] == col \
+                or self.col[i] == i + (col-rows)\
+                or self.col[i] == (col+rows) - i:
+                ans = False
+        return ans
+            
+        # 대각선
             
     def show_board(self):
-        pass
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.col[i] == j:
+                    print(" Q ", end='')
+                else:
+                    print(" + ",end='')
+            print()
+
+N = 4
+q = NQeens(N)
+q.put_queen(0)
+q.show_board()
+print(q.solutions, "solutions found")
