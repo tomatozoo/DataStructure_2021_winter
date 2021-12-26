@@ -26,7 +26,6 @@ class NQeens:
         return True
             
     def show_board(self):
-        # easy
         for row in range(self.size):
             line = ""
             
