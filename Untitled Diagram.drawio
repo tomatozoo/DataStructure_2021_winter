@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-27T01:43:35.330Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62" etag="V522DYRkQe2r-7n9Mw_L" version="16.1.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-12-27T02:04:55.316Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62" etag="ls_GxTu9u4hK09cH9cEq" version="16.1.0" type="github">
   <diagram id="KomBlYfURObIVosx0nQ2" name="Page-1">
     <mxGraphModel dx="2437" dy="962" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -256,6 +256,9 @@
         <mxCell id="W7DBwRAsvJPkKnuEcQkR-90" value="&lt;div style=&quot;text-align: left&quot;&gt;&lt;span style=&quot;font-size: 24px&quot;&gt;dockerfile build&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="W7DBwRAsvJPkKnuEcQkR-70" vertex="1">
           <mxGeometry x="2511.5" y="556" width="430" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="tDmx4yzENfXCIZYhbV4g-1" value="&lt;br&gt;Dockerfile 구성 요소&lt;br&gt;ㄴ 파이썬&lt;br&gt;ㄴ 주피터 노트북&lt;br&gt;ㄴ 셀레니움 pip install selenium&lt;br&gt;ㄴ 구글 크롬, 크롬 드라이버&lt;br&gt;음.. 일단 window 32&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://chromedriver.storage.googleapis.com/index.html?path=93.0.4577.63/&quot; target=&quot;_blank&quot; style=&quot;font-family: &amp;#34;open sans&amp;#34; ; font-size: 13px ; text-align: left ; background-color: transparent ; color: rgb(0 , 137 , 201)&quot;&gt;ChromeDriver 93.0.4577.63&lt;/a&gt;&lt;br&gt;쉘 스크립트 bash.sh&lt;br&gt;셀레니움 실행 방법" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="W7DBwRAsvJPkKnuEcQkR-70">
+          <mxGeometry x="766.5" y="166" width="270" height="150" as="geometry" />
+        </mxCell>
         <mxCell id="W7DBwRAsvJPkKnuEcQkR-74" value="RDBMS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="384" y="530" width="60" height="30" as="geometry" />
         </mxCell>
@@ -267,9 +270,6 @@
             <mxPoint x="200" y="1800" as="sourcePoint" />
             <mxPoint x="-1430" y="1770" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="tDmx4yzENfXCIZYhbV4g-1" value="&lt;br&gt;Dockerfile 구성 요소&lt;br&gt;ㄴ 파이썬&lt;br&gt;ㄴ 주피터 노트북&lt;br&gt;ㄴ 셀레니움&lt;br&gt;ㄴ 구글 크롬, 크롬 드라이버&lt;br&gt;&lt;br&gt;쉘 스크립트 bash.sh&lt;br&gt;셀레니움 실행 방법" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-520" y="2220" width="420" height="330" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
