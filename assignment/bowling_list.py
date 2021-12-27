@@ -10,10 +10,10 @@
 
 # 스켈레톤 코드 이용함
 
-# 
 def bowling():
     total = 0
     frame = []
+    stack = []
     result = 'X'
     status = 'NONE'
     
@@ -22,7 +22,8 @@ def bowling():
         print()
         first, second = input(f"{i+1} 프레임 : ").split(' ')
         f_total = int(first) + int(second)
-        
+        stack.append((int(first), int(second), result, f_total))
+
         
         if int(first) == 10:
             status = 'STRIKE'
@@ -53,7 +54,6 @@ def bowling():
         else:
             status = 'NONE'
             result = '-'
-            
         
             total += f_total
             frame.append((int(first), int(second), result, f_total))
