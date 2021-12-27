@@ -1,33 +1,48 @@
-# bowling game
-score1 = [(8,0), (4,3), (4,6), (2,6), (10,0), (9,0), (10,0), (8,2), (10,0),(10,10)]
-score2 = [(10,0), (10,0), (10,0),(10,0), (10,0), (10,0),(10,0), (10,0), (10,0),(10,0),(10,10)]
+class frame:
+    def __init__(self, index):
+        self.index = index
+        self.first = 0
+        self.second = 0
+        self.next = None
+        self.result = None
+        self.f_total = 0
+        
+    def getNumber(self):
+        if self.index < 10:
+            self.first, self.second = input(f"{self.index+1} 프레임 : ").split(' ')
+        else:
+            self.first, self.second = input("보너스 드로우 : ").split(' ')
+        
+        self.f_total = int(self.first) + int(self.second)
+        
+    def current(self):
+        if self.index < 10:
+            if int(self.first) == 10:
+                self.result = 'X'
+            elif int(self.first) + int(self.second) == 10:
+                self.result = '/'
+            else:
+                self.result = '-'
+                
+                
 
+class bowling:
+    def __init__(self):
+        self.head = None
+        self.count = None
+    def calculate(self):
+        pass
+    def pastCal(self):
+        pass
 
-def bowling(score):
-    total = i = 0
-    frame = []
-    for first, second in score:
-        f_total = first+second
-        if i != 9:
-            next_first, next_second = score[i+1]
-        if first == 10:
-            result = 'STRIKE'
-            f_total += next_first + next_second
-            if i < 8 and next_first == 10:
-                next_next_first, next_next_second = score[i+2]
-                f_total += next_next_first
-        elif (first+second)==10:
-            result = 'SPARE'
-            f_total += next_first
-        else: result = 'NONE'
-        total += f_total
-        frame.append((f_total, result))
-        i += 1
-        if i == 10: break
-    print(frame)
-    print("Total = ", total)
-    print()
+def bowling():
+    
+    total = 0
+    result = 'X'
 
-bowling(score1)
-bowling(score2)
+    for i in range(11):
+        pass
 
+    
+    
+bowling()
