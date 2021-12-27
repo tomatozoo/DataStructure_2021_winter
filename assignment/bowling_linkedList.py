@@ -24,8 +24,7 @@ class frame:
             else:
                 self.result = '-'
                 
-                
-
+            
 class bowling:
     def __init__(self):
         self.head = None
