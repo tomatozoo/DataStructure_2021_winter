@@ -9,12 +9,10 @@ def bowling():
             first, second = input(f"{i+1} 프레임 : ").split(' ')
         else:
             first, second = input("보너스 드로우 : ").split(' ')
-            
         f_total = int(first) + int(second)
         
         # current result
         if i < 10:
-                
             if int(first) == 10:
                 # strike
                 result = 'X'
@@ -33,7 +31,6 @@ def bowling():
         else:
             frame.append([int(first), int(second)])
         
-        # past strike / spare
         # past strike / spare    
         if len(frame) >= 3 and frame[-3][3] == ' ':
             if frame[-3][2] == '/': # 불가능
@@ -55,8 +52,6 @@ def bowling():
                     # current는 strike 아님
                     frame[-2][3] = (frame[-2][0] + int(first) + int(second))
                     total += frame[-2][3]
-                
-     
 
         if i == 9:
             pass
@@ -66,8 +61,5 @@ def bowling():
             print()
 
         stack.append((int(first), int(second), result, f_total))
-    
 
-    
-    
 bowling()
