@@ -5,9 +5,14 @@ class Node:
 
 class CL:
     def __init__(self):
-        pass
+        self.head = None
     def length_list(self):
-        pass
+        self.
     def add_sort(self, item):
         pass
+    def pop_front(self):
+        pass
+
+c = CL()
+
 
