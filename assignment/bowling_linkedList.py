@@ -1,90 +1,108 @@
 class Node:
-    def __init__(self, item):
-        self.data = item
+    def __init__(self):
+        self.data = 0
         self.link = None
+        self.f_total = 0
+        self.frame = []
 
 class SinglyLinkedList:
     def __init__(self):
         self.head = None
         self.rear = None
-    def addNode(self):
-        pass
+        self.count = 0
     def isEmpty(self):
         return not self.head # head가 None
-    def addRear(self):
-        pass
+    def find(self, index):
+        cnt = 0
+        tmp = self.head
+        while (cnt != index):
+            tmp = tmp.link
+            cnt += 1
+        return tmp
+    def appendNode(self, node):
+        if self.head == None:
+          self.head = node
+          self.rear = node
+        else:
+          self.rear.link = node
+          self.rear = node 
+        self.count += 1
+    def print(self):
+        tmp = self.head
+        while tmp != None:
+          print(tmp.frame, end=' ')
+          tmp = tmp.link
+
+
 
 def bowling():
-    total = 0
-    frame = []
-    stack = []
-    result = 'X'
+  total = 0
+  result = 'X'
+
+  s = SinglyLinkedList()
+
+  for i in range(11):
+    tmp = Node()
+    # input
+    if i < 10:
+      first, second = input(f"{i+1} 프레임 : ").split(' ')
+    else:
+        first, second = input("보너스 드로우 : ").split(' ')
+    f_total = int(first) + int(second)
+    # current result 
+    if i < 10:
+      if int(first) == 10:
+        # strike
+        result = 'X'
+        tmp.frame = [int(first), int(second), result, ' ']
+      elif int(first) + int(second) == 10:
+        # spare
+        result = '/'
+        tmp.frame = [int(first), int(second), result, ' ']
+
+      else:
+        # none
+        result = '-'
+        total += f_total
+        tmp.frame = [int(first), int(second), result, f_total]
+      
+
+    else:
+      tmp.frame = [int(first), int(second)]
+      
+    s.appendNode(tmp)
+    # past strike / spare
+    # 전전 strike 점수 계산해주기
     
-    for i in range(11):
-        if i < 10:
-            first, second = input(f"{i+1} 프레임 : ").split(' ')
-        else:
-            first, second = input("보너스 드로우 : ").split(' ')
-            
-        f_total = int(first) + int(second)
-        
-        # current result - create node
+    if s.count >= 3:
+      pastpastFrame = s.find(s.count-3)
+      pastFrame = s.find(s.count-2)
+      if pastpastFrame.frame[3] == ' ':
+        if pastpastFrame.frame[2] == 'X':
+          pastpastFrame.frame[3] = int(first) + pastpastFrame.frame[0] + pastFrame.frame[0]
+          total += pastpastFrame.frame[3]
+    if s.count >= 2:
+      pastFrame = s.find(s.count-2)
+      if pastFrame.frame[3] == ' ':
+        if pastFrame.frame[2] == '/':
+          pastFrame.frame[3] = pastFrame.frame[0] + pastFrame.frame[1] + int(first)
+          total += pastFrame.frame[3]
+        elif pastFrame.frame[2] == 'X':
+          if int(first) == 10:
+            if i == 10:
+              pastFrame.frame[3] = pastFrame.frame[0] + int(first) + int(second)
+              total += pastFrame.frame[3]
+          else:
+            pastFrame.frame[3] = pastFrame.frame[0] + int(first) + int(second)
+            total += pastFrame.frame[3]
 
-        if i < 10:
-                
-            if int(first) == 10:
-                # strike
-                result = 'X'
-                frame.append([int(first), int(second), result, ' '])
+    if i == 9:
+      pass
+    else:
+      s.print()
+      print()
+      print("Total = ", total)
+      print()
 
-            elif int(first) + int(second) == 10:
-                # spare
-                result = '/'
-                frame.append([int(first), int(second), result, ' '])
 
-            else:
-                # none
-                result = '-'
-                total += f_total
-                frame.append([int(first), int(second), result, f_total])
-        else:
-            frame.append([int(first), int(second)])
-        
-        # past strike / spare
-        # past strike / spare    
-        if len(frame) >= 3 and frame[-3][3] == ' ':
-            if frame[-3][2] == '/': # 불가능
-                pass
-            elif frame[-3][2] == 'X': # 더해주기
-                frame[-3][3] = (frame[-3][0] + frame[-2][0] + int(first))
-                total += frame[-3][3]    
-        
-        if len(frame) >= 2 and frame[-2][3] == ' ':
-            if frame[-2][2] == '/':
-                frame[-2][3] = (frame[-2][0] + frame[-2][1] + int(first))
-                total += frame[-2][3]
-            elif frame[-2][2] == 'X':
-                if int(first) == 10: # current도 strike
-                    if i == 10:
-                        frame[-2][3] = frame[-2][0] + int(first) + int(second)
-                        total += frame[-2][3]
-                else:
-                    # current는 strike 아님
-                    frame[-2][3] = (frame[-2][0] + int(first) + int(second))
-                    total += frame[-2][3]
-                
-     
-
-        if i == 9:
-            pass
-        else:
-            print(frame)
-            print("Total = ", total)
-            print()
-
-        stack.append((int(first), int(second), result, f_total))
-    
-
-    
-    
 bowling()
