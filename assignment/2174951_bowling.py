@@ -1,7 +1,6 @@
 def bowling():
     total = 0
     frame = []
-    stack = []
     result = 'X'
     
     for i in range(11):
@@ -59,7 +58,5 @@ def bowling():
             print(frame)
             print("Total = ", total)
             print()
-
-        stack.append((int(first), int(second), result, f_total))
 
 bowling()
