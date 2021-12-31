@@ -1,11 +1,17 @@
-def permutation(str, start, end):
-    if start == end:
+def swap(str, a, b):
+    str[a], str[b]
+    return str
+    
+def permutation(level, str):
+    str = (list(str))
+    if level >= len(str):
+        print("".join(str))
         return
+    
     else:
-        for i in range(start, end):
-            str[start] = str[j]
-            permutation()
-    # for i in range(len):
-    # i번째 원소로 시작하는 것 출력
+        for i in range(level, len(str)):
+            str[level], str[i] = str[i], str[level]
+            permutation(level+1, str)
+    return
 
-permutation('STRING', 0, len('STRING'))
+permutation(0,'STRI')
