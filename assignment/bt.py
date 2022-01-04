@@ -53,30 +53,38 @@ class BinaryTree:
                 print("%d %d" % (node.data, d))
             except:
                 print("%s %d" % (node.data, d))
-            self.nodeDepth(node.right, d+1)    
+            self.nodeDepth(node.right, d+1)   
+             
+    def nodeCalculate(self, node):
+        if node.left or node.right:
+            return max(self.nodeCalculate(node.left), self.nodeCalculate(node.right)) + 1
+        else:
+            return 0
     
     def nodeHeight(self, node):
         if node:
+            self.nodeHeight(node.left)
+            try:
+                print("%d" % (node.data), end=' ')
+            except:
+                print("%s" % (node.data), end =' ')   
+            print("%d" % self.nodeCalculate(node)) 
+            self.nodeHeight(node.right) 
+        else:
+            return 0  
+            
+    def treeDepth(self, node):
+        if node:
+            self.nodeHeight(node.left)
             try:
                 print("%d" % (node.data), end=' ')
             except:
                 print("%s" % (node.data), end =' ')  
-            node = node.left 
-            node = node.right
-            """
-            if node.left and node.right:
-                height =  max(self.nodeHeight(node.left), self.nodeHeight(node.right))+1
-            elif node.left or node.right:
-                height = max(self.nodeHeight(node.left), self.nodeHeight(node.right))+1
-            else:
-                height = 0
-            print("%d" % height)            
-            return height"""
+            print("%d" % self.nodeCalculate(node))
+            self.nodeHeight(node.right)
         else:
-            return 0  
-            
-    def treeDepth(self):
-        pass
+            return 0
+        
     def treeHeight(self):
         pass
             
