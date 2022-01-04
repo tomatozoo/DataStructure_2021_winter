@@ -84,3 +84,4 @@ def del_heap(self):
                 # 한 레벨 낮춘다
                 child *= 2
         self.num[child//2] = temp
+        
