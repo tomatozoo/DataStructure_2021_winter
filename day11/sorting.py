@@ -61,4 +61,94 @@ def QuickSort(A, start, end):
     QuickSort(A, m+1, end)
 
 def Partition(A, start, end):
-    pass
+    pivot = start
+    i = start
+    j = end + 1
+    while True:
+        while True:
+            i+=1
+            if i<=end or A[j] < A[pivot]: break
+        while True:
+            j -= 1
+            if A[j] > A[pivot] or j>=start: break
+        if i < j:
+            A[i], A[j] = A[j], A[i]
+        else: break
+    A[start], A[j] = A[j], A[start]
+    return j
+
+class QuickSort:
+    def __init__(self, num):
+        self.num = num
+        self.size = len(num)
+        print("Quick Sort", self.num)
+    def swap(self, a, b):
+        self.num[a], self.num[b] = self.num[b], self.num[a]
+    def sort(self, left, right):
+        if left < right:
+            i = left
+            j = right + 1
+            pivot = num[left]
+            while True:
+                while True:
+                    i+= 1
+                    if i > right or num[i] >= pivot:
+                        break
+                while True:
+                    j -= 1
+                    if j < left or num[j] <= pivot:
+                        break
+                if i < j:
+                    num[i], num[j] = num[j], num[i]
+                else:
+                    break
+            num[left], num[j] = num[j], num[left]
+            if left != j:
+                print(self.num)
+            self.sort(left, j-1)
+            self.sort(j+1, right)
+
+num = [26,5,37,1,61,11,59,15,48,19]
+s = QuickSort(num)
+s.sort(0, len(num)-1)
+
+class MergeSort:
+    def __init__(self, num):
+        self.num = num
+    def mergesort(self, left, right):
+        if right > left:
+            mid = (left + right) // 2 # 분할
+            self.mergesort(left, mid) # sort
+            self.mergesort(mid+1, right) # sort
+            self.merge(left, mid+1, right) # merge
+    def merge(self, left, mid, right): # 1st = [left..mid-1] 2nd = [mid..right]
+        pos = left
+        left_end = mid - 1
+        n = right - left + 1
+        temp = [None] * self.size
+        while left <= left_end and mid <= right:
+            # 앞 부분을 비교해서 작은 요소를 먼저 넣는다
+            if self.num[left] <= self.num[mid]: 
+                temp[pos] = num[left]
+                pos = pos + 1
+                left = left + 1
+            else:
+                temp[pos] = num[mid]
+                pos += 1
+                mid += 1
+        while left <= left_end:
+            temp[pos] = num[left]
+            left += 1
+            pos += 1
+        while mid <= right:
+            temp[pos] = num[mid]
+            mid += 1
+            pos += 1
+        for i in range(n):
+            # temp를 num 배열에 복사해준다
+            self.num[right] = temp[right]
+            right -= 1
+            
+num = [40,15,34,29,3,10,9,17,37]
+s = MergeSort(num)
+s.mergesort(0, len(num)-1)
