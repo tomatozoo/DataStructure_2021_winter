@@ -38,21 +38,21 @@ class BinaryTree:
         
     def printBT(self, tree):
         if tree:
-            self.printBT(tree.left)
             try:
                 print("%d" % tree.data)
             except:
                 print("%s" % tree.data)
+            self.printBT(tree.left)
             self.printBT(tree.right)
     
     
-    def nodeDepth(self, node, d):
+    def depth_node(self, node, d):
         if node:
-            self.nodeDepth(node.left, d+1)
             try:
                 print("%d %d" % (node.data, d))
             except:
                 print("%s %d" % (node.data, d))
+            self.nodeDepth(node.left, d+1)
             self.nodeDepth(node.right, d+1)   
              
     def nodeCalculate(self, node):
@@ -61,27 +61,27 @@ class BinaryTree:
         else:
             return 0
     
-    def nodeHeight(self, node):
+    def height_node(self, node):
         if node:
-            self.nodeHeight(node.left)
             try:
                 print("%d" % (node.data), end=' ')
             except:
                 print("%s" % (node.data), end =' ')   
             print("%d" % self.nodeCalculate(node)) 
+            self.nodeHeight(node.left)
             self.nodeHeight(node.right) 
         else:
             return 0  
             
-    def treeDepth(self, node):
-        if node:
-            self.nodeHeight(node.left)
+    def treeDepth(self, root, max):
+        if root:
+            self.height_node(root.left)
             try:
-                print("%d" % (node.data), end=' ')
+                print("%d" % (root.data), end=' ')
             except:
-                print("%s" % (node.data), end =' ')  
-            print("%d" % self.nodeCalculate(node))
-            self.nodeHeight(node.right)
+                print("%s" % (root.data), end =' ')  
+            print("%d" % self.nodeCalculate(root))
+            self.height_node(root.right)
         else:
             return 0
         
@@ -91,6 +91,6 @@ class BinaryTree:
 c = BinaryTree()
 c.printBT(c.root)
 print('DDDDDDD')
-c.nodeDepth(c.root, 0)
+c.depth_node(c.root, 0)
 print('HHHHHH')
-c.nodeHeight(c.root )
+c.height_node(c.root)
