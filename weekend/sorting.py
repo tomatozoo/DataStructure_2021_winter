@@ -109,53 +109,55 @@ print(s.lst)
 class QuickSort:
     def __init__(self, num):
         self.lst = num
-        
-    def swap(self, a, b):
-        tmp = self.lst[a]
-        self.lst[a] = self.lst[b]
-        self.lst[b] = tmp
     def MedianofThree(self,  left, right):
         mid = self.lst[(left+right)//2]
         lft = self.lst[left]
         rt = self.lst[right]
         if (mid <= rt <= lft) or (lft <= rt <= mid):
             return right
-        elif  (rt < mid < lft) or (lft <= mid <= rt):
+        elif  (rt < mid < lft) or (lft < mid < rt):
             return (left+right)//2
         else:
             return left
     def sort(self, left, right):
-        print(self.lst)
         # 재귀적인 반복
-        if left == right:
-            return
+        if left >= right:
+            print("HI")
+            return self.lst
         pivot = self.MedianofThree(left, right)
         lft = left
         rt = right
         # partitining
         while True:
             if lft >= rt:
-                self.swap(pivot, rt)
+                self.lst[pivot], self.lst[lft] = self.lst[lft] , self.lst[pivot]
                 break
-            if self.lst[lft] > pivot:
-                pass
-            else:
+            if self.lst[lft] <= pivot:
                 lft += 1
-            if self.lst[rt] < pivot:
-                pass
-            else:
-                rt +- 1  
-            if  self.lst[lft] > pivot and self.lst[rt] < pivot:
-                self.swap(lft, rt)
-        self.sort(self, left, pivot)
-        self.sort(self, pivot, right)
+            if self.lst[rt] >= pivot:
+                rt -= 1
+            if self.lst[lft] > pivot and self.lst[rt] < pivot:
+                self.lst[lft], self.lst[rt] = self.lst[rt] , self.lst[lft]
+        self.sort(left, pivot-1)
+        self.sort(pivot+1, right)
 
             
-print("HI")
-
-num = [31,9,10,23,49,15,11,7]
+num = [31,7,6]
 s = QuickSort(num)
-print(s.lst)
 s.sort(0, len(num)-1)
 print(s.lst)
+
+class MergeSort:
+    def __init__(self, num):
+        self.lst = num
+    def swap(self, a, b):
+        pass
+    def mergesort(self, left, right):
+        pass
+    def merge(self, left, mid, right):
+        pass
+
+num = [31,7,6]
+s = MergeSort(num)
+s.sort(0, len(num)-1)
 print(s.lst)
