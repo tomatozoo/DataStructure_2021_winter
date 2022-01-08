@@ -90,6 +90,11 @@ char = ['w', 'f', 'r', 'm', 'e', 'd', 'o', 't', 'i', 'a', 'n','\' \'']
 # frequency
 num =  [3, 3, 2, 2, 6, 3, 3, 2, 1, 1, 2, 1]
 
+# character
+char = ['a', 'b', 'c', 'd', 'e', 'f']
+# frequency
+num =  [6,5,4,3,2,1]
+
 h = Huffman(char, num)
 print()
 h.createTree()
