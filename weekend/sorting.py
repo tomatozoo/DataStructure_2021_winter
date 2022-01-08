@@ -77,3 +77,18 @@ num = [31,9,10,23,49,15,11,7]
 s = InsertionSort(num)
 s.sort()
 print(s.lst)
+
+class shellSort:
+    def __init__(self, num):
+        self.lst = num
+    def __str__(self):
+        for i in self.lst:
+            print("%2d " % i)
+    def sort(self):
+        pass
+            
+
+num = [31,9,10,23,49,15,11,7]
+s = shellSort(num)
+s.sort()
+print(s.lst)
