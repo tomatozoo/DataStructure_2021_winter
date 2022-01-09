@@ -159,15 +159,15 @@ class MergeSort:
         if left < right: # 0 1
             # 원소가 1개가 될 때까지 분리를 반복한다. 
             mid = ((left + right) // 2)
-            print(mid)
             self.mergesort(left, mid) # 0 0
             self.mergesort(mid+1, right) # 1 1
-            self.merge(left, mid+1, right) # 0 1 1
+            self.merge(left, mid, right) # 0 1 1
+            
     def merge(self, left, mid, right):
         # left, mid, right 영역에 대해서 sort하면서 merge하기
         tmp = []
         lptr = left
-        rptr = mid
+        rptr = mid +1
         while lptr <= mid and rptr <= right:
             if self.lst[lptr] < self.lst[rptr]:
                 tmp.append(self.lst[lptr])
@@ -175,23 +175,76 @@ class MergeSort:
             elif self.lst[lptr] >= self.lst[rptr]:
                 tmp.append(self.lst[rptr])
                 rptr += 1
+                
+        while lptr <= mid:
+            tmp.append(self.lst[lptr])
+            lptr += 1
+        while rptr <= right:
+            tmp.append(self.lst[rptr])
+            rptr += 1   
             
-
-        while lft and rt:
-            if lft[0] >= rt[0]:
-                tmp.append(rt[0])
-                rt.pop(0)
-            elif lft[0] < rt[0]:
-                tmp.append(lft[0])
-                lft.pop(0)
-            print("tmp",tmp)
-        tmp += lft
-        tmp += rt 
-        print("tmp", tmp)
-        self.lst[left:right] = tmp   
+        index = left
+        for i in tmp:
+            self.lst[index] = i
+            index += 1
 
 print("merge sort")
 num = [31,7,6,3,4,5,1]
 s = MergeSort(num)
 s.mergesort(0, len(num)-1)
+print(s.lst)
+
+import math
+class Queue:
+    # FIFO
+    def __init__(self):
+        # 0부터 9까지 queue를 준비함
+        self.line0 = []
+        self.line1 = []
+        self.line2 = []
+        self.line3 = []
+        self.line4 = []
+        self.line5 = []
+        self.line6 = []
+        self.line7 = []
+        self.line8 = []
+        self.line9 = []
+        self.full =  [self.line0, self.line1, self.line2,self.line3,self.line4,self.line5,self.line6,self.line7,self.line8,self.line9]
+                
+    def enqueue(self, num, degree):
+        # num == 1, degree == 1이면, 
+        # return num % (pow(10, degree))
+        print(pow(10, degree))
+        i = (num % pow(10, degree+1))//pow(10, degree) # 1, 1 => 1, 2, 1 =? 2
+        self.full[i].append(num)
+        
+    def dequeueAll(self):
+        tmp = []
+        for i in [self.line0, self.line1, self.line2,self.line3,self.line4,self.line5,self.line6,self.line7,self.line8,self.line9]:
+            while len(i) > 0:
+                tmp.append(i.pop(0))
+        return tmp
+class RadixSort:
+    def __init__(self, num, maxdegree):
+        self.lst = num
+        self.max = maxdegree
+    def radixsort(self, degree):
+        # 종료 조건
+        if degree > self.max:
+            return
+        # 0부터 9까지 Bucket을 준비한다. (Queue)
+        tmp = Queue()
+        # 데이터를 보며 가장 낮은 차수에 대해 Bucket에 데이터를 넣는다. 
+        for i in self.lst:
+            tmp.enqueue(i, degree)
+        # 차례로 데이터를 도로 가져온다. 
+        self.lst = tmp.dequeueAll()
+        # 다시 이 리스트를 그대로 자리수를 높여 Bucket에 데이터를 넣는다. 
+        self.radixsort(degree+1)
+        
+print("radix sort")
+num = [31,7,6,3,4,5,1]
+maxdegree = 1
+s = RadixSort(num, maxdegree)
+s.radixsort(0)
 print(s.lst)
