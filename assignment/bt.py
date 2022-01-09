@@ -185,6 +185,24 @@ class BinaryTree:
                 break
             print(node.data)
             node = node.right
+    def level_order(self, node):
+        queue = [] # FIFO
+        queue.insert(0, node)
+        while queue:
+            tmp = queue.pop(0)
+            print(tmp.data)
+            if tmp.left:
+                queue.insert(0, tmp.left)
+            if tmp.right:
+                queue.insert(0, tmp.right)
+    def copyTree(self, tree):
+        if tree:
+            node = Node(tree.data)
+            node.left = self.copyTree(tree.left)
+            node.right = self.copyTree(tree.right)
+            return node
+
+        
                 
             
 
@@ -198,3 +216,60 @@ print("preorder")
 c.preorder(c.root)
 print("iterative_inorder")
 c.iterative_inorder(c.root)
+print("level_order")
+c.level_order(c.root)
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.value = None
+        self.left = None
+        self.right = None
+class EvalTree: # inorder representation
+    def __init__(self):
+        self.root = None
+        self.value = 0
+        self.treeDepth = 0
+        self.treeHeight = 0
+        
+        temp = Node('+')
+        self.root = temp
+        
+        temp = Node('*')
+        self.root.left = temp
+        
+        temp = Node('-')
+        self.root.right = temp
+        
+        temp = Node('5')
+        self.root.left.left = temp
+        
+        temp = Node('4')
+        self.root.left.right = temp
+        
+        temp = Node('100')
+        self.root.right.left = temp
+        
+        temp = Node('20')
+        self.root.right.right = temp
+                
+    def eval_tree(self, node):
+        if node:
+            self.eval_tree(node.left)
+            self.eval_tree(node.right)
+            if node.data == '+':
+                node.value = node.left.value + node.right.value
+            elif node.data == '-':
+                node.value = node.left.value - node.right.value
+            elif node.data == '*':
+                node.value = node.left.value * node.right.value
+            elif node.data == '/':
+                node.value = node.left.value / node.right.value
+            else:
+                node.value = int(node.data)
+                print(node.value, end = ' ')
+        
+
+c = EvalTree()
+c.eval_tree(c.root)
+print(c.root.value)
