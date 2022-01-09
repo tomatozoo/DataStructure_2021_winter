@@ -147,17 +147,51 @@ s = QuickSort(num)
 s.sort(0, len(num)-1)
 print(s.lst)
 
+import copy
+
 class MergeSort:
     def __init__(self, num):
         self.lst = num
     def swap(self, a, b):
-        pass
+        self.lst[a], self.lst[b] = self.lst[b], self.lst[a]
     def mergesort(self, left, right):
-        pass
+        # 종료 조건
+        if left < right: # 0 1
+            # 원소가 1개가 될 때까지 분리를 반복한다. 
+            mid = ((left + right) // 2)
+            print(mid)
+            self.mergesort(left, mid) # 0 0
+            self.mergesort(mid+1, right) # 1 1
+            self.merge(left, mid+1, right) # 0 1 1
     def merge(self, left, mid, right):
-        pass
+        # left, mid, right 영역에 대해서 sort하면서 merge하기
+        tmp = []
+        lptr = left
+        rptr = mid
+        while lptr <= mid and rptr <= right:
+            if self.lst[lptr] < self.lst[rptr]:
+                tmp.append(self.lst[lptr])
+                lptr += 1
+            elif self.lst[lptr] >= self.lst[rptr]:
+                tmp.append(self.lst[rptr])
+                rptr += 1
+            
 
-num = [31,7,6]
+        while lft and rt:
+            if lft[0] >= rt[0]:
+                tmp.append(rt[0])
+                rt.pop(0)
+            elif lft[0] < rt[0]:
+                tmp.append(lft[0])
+                lft.pop(0)
+            print("tmp",tmp)
+        tmp += lft
+        tmp += rt 
+        print("tmp", tmp)
+        self.lst[left:right] = tmp   
+
+print("merge sort")
+num = [31,7,6,3,4,5,1]
 s = MergeSort(num)
-s.sort(0, len(num)-1)
+s.mergesort(0, len(num)-1)
 print(s.lst)
