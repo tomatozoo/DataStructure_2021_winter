@@ -122,3 +122,79 @@ print("TDTDTDTD")
 c.depth(c.root)
 print("HHHHDDDD")
 c.height(c.root)
+
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+        self.treeDepth = 0
+        self.treeHeight = 0
+        
+        temp = Node('-')
+        self.root = temp
+        
+        temp = Node('+')
+        self.root.left = temp
+        
+        temp = Node('/')
+        self.root.right = temp
+        
+        temp = Node('*')
+        self.root.left.left = temp
+        
+        temp = Node('C')
+        self.root.left.right = temp
+        
+        temp = Node('D')
+        self.root.right.left = temp
+        
+        temp = Node('E')
+        self.root.right.right = temp
+        
+        temp = Node('A')
+        self.root.left.left.left = temp
+        
+        temp = Node('B')
+        self.root.left.left.right = temp
+        
+    def inorder(self, node):
+        if node:
+            self.inorder(node.left)
+            print(node.data)
+            self.inorder(node.right)
+    def postorder(self, node):
+        if node:
+            self.inorder(node.left)
+            self.inorder(node.right)   
+            print(node.data) 
+    def preorder(self, node):
+        if node:
+            print(node.data) 
+            self.inorder(node.left)
+            self.inorder(node.right) 
+            
+    def iterative_inorder(self, node):
+        stack = []
+        while True:
+            while node:
+                stack.append(node)
+                node = node.left
+            try:
+                node = stack.pop()
+            except:
+                break
+            print(node.data)
+            node = node.right
+                
+            
+
+print("traverse")
+c = BinaryTree()
+print("inorder")
+c.inorder(c.root)
+print("postorder")
+c.postorder(c.root)
+print("preorder")
+c.preorder(c.root)
+print("iterative_inorder")
+c.iterative_inorder(c.root)
