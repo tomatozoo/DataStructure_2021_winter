@@ -273,3 +273,162 @@ class EvalTree: # inorder representation
 c = EvalTree()
 c.eval_tree(c.root)
 print(c.root.value)
+
+class TBT_Node:
+    def __init__(self, data):
+        self.data = data
+        self.right = None
+        self.left = None
+        self.rightFlag = None
+        self.leftFlag = None
+
+class TBT:
+    def __init__(self, data):
+        self.root = None
+        # create Tree
+        self.root = TBT_Node('-')
+        self.root.left = TBT_Node('A')
+        self.root.left.left = TBT_Node('B')
+        self.root.left.right = TBT_Node('C')
+        self.root.left.left.left = TBT_Node('D')
+        self.root.left.left.right = TBT_Node('E')
+        self.root.left.right.left = TBT_Node('F')
+        self.root.left.right.right = TBT_Node('G')
+        self.root.left.left.left.left = TBT_Node('H')
+        self.root.left.left.left.right = TBT_Node('I')
+        
+    def tbt_inorder(self, node):
+        temp = node
+        while True:
+            # 다음 노드를 찾아 출력한다. 
+            temp = self.successor(temp)
+            if temp == node:
+                break
+            print("%3c " % temp.data)
+            
+    def successor(self, node):
+        temp = node.right
+        if not (temp.rightFlag or temp.leftFlag):
+            while not temp.left_thread:
+                temp = temp.left
+        return temp
+        
+    def define(self, node):
+        temp = self.node
+        if temp.left:
+            self.define(temp.left)
+        else:
+            # inorder predecessor
+            pass
+        if temp.right:
+            self.define(temp.right)
+        else:
+            # inorder successor
+            pass
+        return
+    
+    def predecessor(self, node):
+        temp = self.node.left
+        if not temp:
+            return self.root
+        while temp:
+            if not temp.right:
+                return temp
+            temp = temp.right
+            
+    def successor(self, node):
+        l = self.node.left
+        r = self.node.right
+        if not (l or r):
+            return self.root
+        while l or r:
+            pass
+
+class Heap:
+    def __init__(self, size):
+        self.size = size
+        self.heap = [None] * size
+        self.count = 0
+    def isEmpty(self):
+        return self.count == 0
+    def isFull(self):
+        return self.count == self.size
+    def add_heap(self, item):
+        if self.isFull():
+            return
+        i = self.count
+        self.count += 1
+
+        # empty heap이 아니고, 
+        # item이 부모 노드보다 큰 경우에는, 
+        while i != 0 and item > self.heap[i//2]:
+            # temp 자리에 부모 노드의 값을 저장해두고
+            self.heap[i] = self.heap[i//2]
+            # 다시 부모 노드와 부부모 노드를 비교하는 것을 반복한다. 
+            i//=2
+        # 마침에 부모 노드 >= 자식 노드의 관계가 성립한다면, 
+        # i번째 item으로, item을 저장한다. 
+        self.heap[i] = item
+        print("%2d " % item, end=' ')
+        print(self.heap)
+        
+    def del_heap(self):
+        if self.count == 0:
+            print("Empty heap")
+            return
+        # root를 제거한다. 
+        item = self.heap[0]
+        temp = self.heap[self.count]
+        self.heap[self.count] = None
+        self.count -= 1
+        
+        parent = 1
+        child = 2
+        # rebuilding heap
+        while child <= self.count:
+            if child < self.count and \
+                self.heap[child] < self.heap[child+1]:
+                    # child < parent
+                    child += 1
+            try:
+                if temp >= self.heap[child]:
+                    # 재구성 완료
+                    break
+            except:
+                break
+            # swap 이 필요한 경우
+            self.heap[parent] = self.heap[child]
+            parent = child
+            child *= 2
+        if self.count != 0:
+            # 마지막 탐색 위치에 temp 저장
+            self.heap[parent] = temp
+        return item
+    def heapSort(self):
+        n = self.size - 1
+        for i in range(n//2, 0, -1):
+            self.makeheap(i, n)
+        print(self.num)
+        for i in range(n-1, 0, -1):
+            self.swap(1, i+1)
+            self.makeheap(1, i)
+            print(self.num)
+    def makeheap(self, root, n):
+        temp = self.num[root]
+        child = 2 * root
+        while child <= n:
+            if child < n and self.num[child] < self.num[child + 1]:
+                child += 1
+            if temp > self.num[child]:
+                break
+            else:
+                self.num[child//2] = self.num[child]
+                child * 2
+        self.num[child//2] = temp
+    
+c = Heap(10)
+c.heap = [None,20,15,14,10,2, None, None, None, None]
+c.count = 5
+c.add_heap(5)
+c.del_heap()
+print(c.heap)
